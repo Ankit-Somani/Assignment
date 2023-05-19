@@ -15,9 +15,15 @@ class model_input(BaseModel):
 async def predict(input : model_input):
     if(input.hf_pipeline == "object-detection"):
         payload['inputs'][0]['name'] = "inputs"
-        payload['inputs'][0]['parameters']['content_type'] = "string"
-        payload['inputs'][0]['data'] = input.inputs
+        if("http" in input.inputs):
+            payload['inputs'][0]['parameters']['content_type'] = "str"  
+            payload['inputs'][0]['data'] = input.inputs        
+        else:
+            payload['inputs'][0]['data'] = input.inputs
+            payload['inputs'][0]['parameters']['content_type'] = "pillow_image" 
+
         response = requests.post(input.model_deployed_url, json=payload, headers=headers)
+        print("response")
         res = response.json()
         if(response.status_code==200):          
             return res['outputs'][0]['data'][0]
