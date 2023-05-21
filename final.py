@@ -14,7 +14,7 @@ class model_input(BaseModel):
     parameters: Dict[str, Any] = Field(default_factory=dict)
 
 
-@app.post("/predict/")
+@app.post("/predict")
 async def predict(input : model_input):
     if(input.hf_pipeline == "object-detection"):
         payload['inputs'][0]['name'] = "inputs"
