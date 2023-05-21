@@ -15,23 +15,23 @@ This is a fastapi service, which takes input for the model (in the same format a
 
 ## Utilizing the service: ##
 * Make a POST request at `http://127.0.0.1:8000/predict`  OR  `https://fastapi-intern-ankit-8000.demo1.truefoundry.com/predict` with body as:
-```
-  {
-      "hf_pipeline": "<hf-pipeline-name>", 
-      "model_deployed_url": "<model-deployed-url>",
-      "inputs": "<text>",
-      "parameters": {...}
-  }
-   ```
+  ```
+    {
+        "hf_pipeline": "<hf-pipeline-name>", 
+        "model_deployed_url": "<model-deployed-url>",
+        "inputs": "<text>",
+        "parameters": {...}
+    }
+     ```
    
 * NOTE: Parameters support is not added for all optional parameters in text-generation model. Supported parameters are:
-```
-  "parameters": {
-      "min_new_tokens": 10,
-      "temperature": 1.0,
-      "max_new_tokens": 20,
-      "num_return_sequences": 5
-  }
- 
-```
+  ```
+    "parameters": {
+        "min_new_tokens": 10,
+        "temperature": 1.0,
+        "max_new_tokens": 20,
+        "num_return_sequences": 5
+    }
+
+  ```
 
